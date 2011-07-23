@@ -15,10 +15,10 @@ end
 
 def create_graph()
   Neo4j::Transaction.run do
-    return if MyNode.find("name: I").first
+    return if Person.find("name: I").first
 
-    me = MyNode.new :name => "I" 
-    you = MyNode.new :name => "You"
+    me = Person.new :name => "I" 
+    you = Person.new :name => "You"
     me.in_love << you
   end
 end
