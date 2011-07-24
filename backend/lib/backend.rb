@@ -32,6 +32,7 @@ class Backend < Sinatra::Base
   
   
   get "/connections/:name" do |name|
+   puts "doget"
    p $NEO4J_SERVER
   
    me = Person.find("name: #{name}").first
