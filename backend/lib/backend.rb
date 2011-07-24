@@ -29,5 +29,5 @@ get "/connections/:name" do |name|
   me = Person.find("name: #{name}").first
   return unless me
 
-  Hash[ me.in_love.collect{ |r| [:love,r.name ] } ].to_json
+  Hash[ me.in_love.collect{ |r| [:love,r.name + "x" ] } ].to_json
 end
