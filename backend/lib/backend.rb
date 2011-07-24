@@ -22,7 +22,6 @@ end
 configure do
   puts "init sini"
   puts "x#{ $NEO4J_SERVER }x"
-  puts "x#{ $$NEO4J_SERVER }x"
     unless $NEO4J_SERVER
   # please ensure a clean database for this example!
     Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
@@ -33,7 +32,6 @@ end
 get "/connections/:name" do |name|
  puts "doget"
  puts "x#{ $NEO4J_SERVER }x"
- puts "x#{ $$NEO4J_SERVER }x"
 
  me = Person.find("name: #{name}").first
   return unless me
