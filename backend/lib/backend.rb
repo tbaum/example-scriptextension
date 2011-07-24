@@ -12,19 +12,12 @@ class Backend < Sinatra::Base
 
 
   configure do
-    puts "configure2"
-    begin
-    puts $NEO4J_SERVER.inspect
-    rescue e
-    puts e.inspect
-    end
-
+    puts "configure2 :#{$NEO4J_SERVER}:"
 
     unless $NEO4J_SERVER
       # please ensure a clean database for this example!
       Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
     end
-
 
     unless Person.find("name: I").first
       Neo4j::Transaction.run do
@@ -38,13 +31,8 @@ class Backend < Sinatra::Base
     puts "configure3"
   end
 
-  before do
-    puts "before"
-  end
-
   get "/connections/:name" do |name|
-    puts "doget"
-    #   puts $NEO4J_SERVER }x"
+    puts "get :#{$NEO4J_SERVER}:"
 
     me = Person.find("name: #{name}").first
     return unless me
