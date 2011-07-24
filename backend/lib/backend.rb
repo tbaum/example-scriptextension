@@ -10,44 +10,39 @@ end
 
 class Backend < Sinatra::Base
 
-  def create_graph()
-    Neo4j::Transaction.run do
-      return if Person.find("name: I").first
-  
-      me = Person.new :name => "I" 
-      you = Person.new :name => "You"
-      me.in_love << you
-    end
-  end
-  
-  
-  def initialize()
-        puts "init sini"
-#    puts $NEO4J_SERVER
-      unless $NEO4J_SERVER
-    # please ensure a clean database for this example!
+
+  configure do
+    puts "configure2"
+    unless $NEO4J_SERVER
+      # please ensure a clean database for this example!
       Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
     end
 
+
     unless Person.find("name: I").first
       Neo4j::Transaction.run do
-       
-        me = Person.new :name => "I" 
+
+        me = Person.new :name => "I"
         you = Person.new :name => "You"
         me.in_love << you
       end
     end
 
+    puts "configure3"
   end
-  
+
+  before do
+    puts "before"
+  end
+
   get "/connections/:name" do |name|
-   puts "doget"
-#   puts $NEO4J_SERVER }x"
-  
-   me = Person.find("name: #{name}").first
+    puts "doget"
+    #   puts $NEO4J_SERVER }x"
+
+    me = Person.find("name: #{name}").first
     return unless me
-  
-    Hash[ me.in_love.collect{ |r| [:love,r.name + " yy" ] } ].to_json
+
+    Hash[me.in_love.collect { |r| [:love, r.name + " zz"] }].to_json
   end
-end  
-  
+
+end
