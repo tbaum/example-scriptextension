@@ -1,3 +1,3 @@
 require 'lib/backend.rb'
 
-run Backend
+run Sinatra::Application
