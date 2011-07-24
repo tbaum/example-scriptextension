@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.email        = 'thomas.baum@atns.de'
   s.homepage     = 'https://github.com/tbaum/example-scriptextension'
 
-  s.files        = ['backend.rb']
+  s.files        = Dir['lib/**/*']
+  s.require_path = 'lib'
 
   s.add_dependency('sinatra', '~> 1.2.6')
   s.add_dependency('neo4j', '~> 1.1.2')
