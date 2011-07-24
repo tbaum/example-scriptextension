@@ -1,9 +1,10 @@
 require "sinatra"
 require "neo4j"
 
-puts "TEST:::::::"
+puts "TEST:"
 p $NEO4J_SERVER
-#p NEO4J_SERVER
+p NEO4J_SERVER
+puts "xxxxxx"
 
 unless $NEO4J_SERVER
 # please ensure a clean database for this example!
