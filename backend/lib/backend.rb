@@ -21,8 +21,8 @@ class Backend < Sinatra::Base
   end
   
   
-  configure do
-    puts "init sini"
+  def initialize()
+        puts "init sini"
 #    puts $NEO4J_SERVER
       unless $NEO4J_SERVER
     # please ensure a clean database for this example!
