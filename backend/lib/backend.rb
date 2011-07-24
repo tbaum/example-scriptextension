@@ -24,7 +24,7 @@ configure do
   puts "x#{ $NEO4J_SERVER }x"
     unless $NEO4J_SERVER
   # please ensure a clean database for this example!
-    Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
+#    Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
   end
   create_graph
 end
