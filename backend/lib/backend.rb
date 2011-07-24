@@ -13,6 +13,13 @@ class Backend < Sinatra::Base
 
   configure do
     puts "configure2"
+    begin
+    puts $NEO4J_SERVER.inspect
+    rescue e
+    puts e.inspect
+    end
+
+
     unless $NEO4J_SERVER
       # please ensure a clean database for this example!
       Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
