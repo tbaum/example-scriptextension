@@ -9,6 +9,7 @@ class Person
 end
 
 class Backend < Sinatra::Base
+
   def create_graph()
     Neo4j::Transaction.run do
       return if Person.find("name: I").first
@@ -27,7 +28,16 @@ class Backend < Sinatra::Base
     # please ensure a clean database for this example!
       Neo4j::Config[:storage_path] = '~/Downloads/neo4j-community-1.4/data/graph.db'
     end
-    create_graph
+
+    unless Person.find("name: I").first
+      Neo4j::Transaction.run do
+       
+        me = Person.new :name => "I" 
+        you = Person.new :name => "You"
+        me.in_love << you
+      end
+    end
+
   end
   
   get "/connections/:name" do |name|
